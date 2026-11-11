@@ -1,0 +1,11 @@
+GET http://localhost:8080/students
+### 按学号查询
+GET http://localhost:8080/students/20250401
+
+### 新增学生
+POST http://localhost:8080/students
+Content-Type: application/json
+
+{"id":"20250409","name":"测试","sex":"男","phone":"13800000009"}
+###
+DELETE http://localhost:8080/students/20250409

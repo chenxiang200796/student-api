@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
+
+
 
 
 @SpringBootApplication//有了这一行main里面的SpringApplication.run才知道要干什么，且决定扫描范围
@@ -32,4 +37,15 @@ public class StudentApiApplication {
     public Student getOne(@PathVariable String id) throws Exception{
         return MysqlStudentDao.findById(id);
     }
+    @PostMapping("/students")
+    public String add(@RequestBody Student s) throws Exception{
+        MysqlStudentDao.insert(s);
+        return "添加成功"+s;
+    }
+    @DeleteMapping("/students/{id}")
+    public String delete(@PathVariable String id) throws Exception{
+        MysqlStudentDao.deleteById(id);
+        return "删除成功"+id;
+    }
+
 }
