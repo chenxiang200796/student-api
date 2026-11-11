@@ -40,7 +40,7 @@ public class MysqlStudentDao {
         ps.setString(1,s.getId());
         ps.setString(2,s.getName());
         ps.setString(3,s.getSex());
-        ps.setString(4,s.getPhone());
+        ps.setString(4,s.getPhone());//这里的123分别代表第1个、第2个、第3个问号
         ps.executeUpdate();
         ps.close();
         conn.close();
@@ -54,7 +54,24 @@ public class MysqlStudentDao {
         ps.close();
         conn.close();
     }
-
+    public static Student findById(String id) throws Exception{
+        Connection conn=DriverManager.getConnection(URL,"root","123456");
+        String sql="SELECT id,name,sex,phone FROM student WHERE id=?";
+        PreparedStatement ps=conn.prepareStatement(sql);
+        ps.setString(1,id);
+        ResultSet rs=ps.executeQuery();//结果集返回到rs里
+        if(rs.next()){
+            Student stu=new Student(rs.getString("id"),rs.getString("name"),rs.getString("sex"),rs.getString("phone"));
+            rs.close();
+            ps.close();
+            conn.close();
+            return stu;
+        }
+        rs.close();
+        ps.close();
+        conn.close();
+        return null;
+    }
 
 
 }
