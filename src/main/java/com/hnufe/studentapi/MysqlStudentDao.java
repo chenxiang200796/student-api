@@ -1,4 +1,6 @@
 package com.hnufe.studentapi;
+import org.springframework.stereotype.Repository;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,11 +9,11 @@ import java.util.ArrayList;
 import java.sql.PreparedStatement;
 
 
-
+@Repository//表示这个类是一个数据访问层的类,即数据库类
 public class MysqlStudentDao {
     private static final String URL="jdbc:mysql://localhost:3306/student_db?"+
-            "useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8";
-    public static ArrayList<Student>findAll()throws Exception{
+            "useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8&allowPublicKeyRetrieval=true";
+    public  ArrayList<Student>findAll()throws Exception{
         ArrayList<Student>list=new ArrayList<>();
         //连接数据库
         Connection conn= DriverManager.getConnection(URL,"root","123456");
@@ -33,7 +35,7 @@ public class MysqlStudentDao {
         conn.close();
         return list;
     }
-    public static void insert(Student s) throws Exception{
+    public  void insert(Student s) throws Exception{
         Connection conn=DriverManager.getConnection(URL,"root","123456");
         String sql="INSERT INTO student (id,name,sex,phone) VALUES (?,?,?,?);";//SQL语句存储了一段文字，用于向数据库中插入数据
         PreparedStatement ps=conn.prepareStatement(sql);
@@ -45,7 +47,7 @@ public class MysqlStudentDao {
         ps.close();
         conn.close();
     }
-    public static void deleteById(String id) throws Exception{
+    public  void deleteById(String id) throws Exception{
         Connection conn=DriverManager.getConnection(URL,"root","123456");
         String sql="DELETE FROM student WHERE id=?";//SQL语句存储了一段文字，用于向数据库中删除数据
         PreparedStatement ps=conn.prepareStatement(sql);
@@ -54,7 +56,7 @@ public class MysqlStudentDao {
         ps.close();
         conn.close();
     }
-    public static Student findById(String id) throws Exception{
+    public  Student findById(String id) throws Exception{
         Connection conn=DriverManager.getConnection(URL,"root","123456");
         String sql="SELECT id,name,sex,phone FROM student WHERE id=?";
         PreparedStatement ps=conn.prepareStatement(sql);
