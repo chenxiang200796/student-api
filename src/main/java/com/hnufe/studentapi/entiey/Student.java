@@ -1,4 +1,4 @@
-package com.hnufe.studentapi;
+package com.hnufe.studentapi.entiey;
 
 public class Student {
     private String id;

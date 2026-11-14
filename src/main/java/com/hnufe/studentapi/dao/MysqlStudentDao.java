@@ -1,4 +1,5 @@
-package com.hnufe.studentapi;
+package com.hnufe.studentapi.dao;
+import com.hnufe.studentapi.entiey.Student;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;

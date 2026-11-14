@@ -1,4 +1,6 @@
-package com.hnufe.studentapi;
+package com.hnufe.studentapi.service;
+import com.hnufe.studentapi.dao.MysqlStudentDao;
+import com.hnufe.studentapi.entiey.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -15,6 +17,15 @@ public class StudentService {
         return dao.findById(id);
     }
     public void insert(Student s) throws Exception{
+        if(s.getId()==null||s.getId().trim().isEmpty()){
+            throw new IllegalArgumentException("学号不能为空");
+        }
+        if(s.getName()==null||s.getName().trim().isEmpty()){
+            throw new IllegalArgumentException("姓名不能为空");
+        }
+        if(dao.findById(s.getId())!=null){
+            throw new IllegalArgumentException("学号已存在"+s.getId());
+        }
         dao.insert(s);
     }
     public void deleteById(String id) throws Exception{

@@ -1,4 +1,6 @@
-package com.hnufe.studentapi;
+package com.hnufe.studentapi.controller;
+import com.hnufe.studentapi.entiey.Student;
+import com.hnufe.studentapi.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
@@ -16,9 +18,15 @@ public class StudentController {
         return service.findById(id);
     }
     @PostMapping("/students")
-    public String add(@RequestBody Student s)throws Exception{
-        service.insert(s);
-        return "添加成功"+s;
+    public String add(@RequestBody Student s){
+        try{
+            service.insert(s);
+            return "添加成功"+s;
+        }catch(IllegalArgumentException e){
+            return"参数错误:" + e.getMessage();
+        }catch(Exception e){
+            return "系统错误:"+e.getMessage();
+        }
     }
     @DeleteMapping("/students/{id}")
     public String delete(@PathVariable String id) throws Exception{
