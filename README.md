@@ -1,4 +1,5 @@
 # 学生信息管理系统 - Spring Boot 接口版
+在线地址：http://203.195.214.195:8080/students
 
 基于 Spring Boot + MySQL 的 REST API，提供学生信息的查询接口。
 
