@@ -1,5 +1,5 @@
 package com.hnufe.studentapi.controller;
-import com.hnufe.studentapi.entiey.Student;
+import com.hnufe.studentapi.entity.Student;
 import com.hnufe.studentapi.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

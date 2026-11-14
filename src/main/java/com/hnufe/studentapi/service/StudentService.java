@@ -1,6 +1,6 @@
 package com.hnufe.studentapi.service;
 import com.hnufe.studentapi.dao.MysqlStudentDao;
-import com.hnufe.studentapi.entiey.Student;
+import com.hnufe.studentapi.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;

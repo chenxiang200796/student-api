@@ -1,4 +1,4 @@
-package com.hnufe.studentapi.entiey;
+package com.hnufe.studentapi.entity;
 
 public class Student {
     private String id;
